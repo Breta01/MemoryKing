@@ -1,5 +1,5 @@
 {
-  "name": "memoryking",
+  "name": "MemoryKing",
   "productName": "Memory King",
   "version": "0.1.0",
   "description": "Memory training app.",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Breta01/MemoryKing"
   },
   "keywords": [
     "Memory",
@@ -20,9 +20,9 @@
   "author": "Břetislav Hájek",
   "license": "",
   "bugs": {
-    "url": "https://github.com/Breta01/memoryking/issues"
+    "url": "https://github.com/Breta01/MemoryKing/issues"
   },
-  "homepage": "https://github.com/Breta01/memoryking#readme",
+  "homepage": "https://github.com/Breta01/MemoryKing#readme",
   "devDependencies": {
     "electron-prebuilt": "^1.2.0"
   },
