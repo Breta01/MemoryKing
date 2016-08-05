@@ -1,2 +1,8 @@
 node_modules
 npm-debug.log
+
+#Visual studio code directory
+.vscode
+
+# Webpack build directory
+build

@@ -1,0 +1,20 @@
+$backgroundColor: #ecf0f1;
+$primaryColor: lighten(#33626D, 4);
+$black-font-color: #333;;
+
+
+* {
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+body {
+  background: $backgroundColor;
+  padding: 20px;
+  font-size: 14px;
+  font-family: Helvetica Neue, Arial;
+  font-weight: 200;
+  color: $black-font-color;
+  overflow-y: scroll;
+}
