@@ -1,4 +1,5 @@
 # Memory King
+[![Build Status](https://travis-ci.org/Breta01/MemoryKing.svg?branch=master)](https://travis-ci.org/Breta01/MemoryKing)
 
 Memory King is memory training app based on techniques used in memory championships.
 
