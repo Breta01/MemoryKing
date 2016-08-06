@@ -11,14 +11,13 @@ class App extends React.Component {
     render() {
         return (
           <div>
-            <h1>Hi</h1>
-            <p>This is memory king app workspace setup</p>
+            <h1>Hi and Welcome to the Memory King</h1>
           </div>
         );
     }
 }
 
 // Render to ID app in the DOM
-ReactDOM.render( 
+ReactDOM.render(
     <App />, document.getElementById('app')
 );

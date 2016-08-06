@@ -6,7 +6,7 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
 // Reloading on changes, maybe can be deleted
-require('electron-reload')(__dirname);
+// require('electron-reload')(__dirname);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -15,9 +15,9 @@ let mainWindow
 function createWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-      width: 1000, 
+      width: 1000,
       height: 600,
-      autoHideMenuBar: true      
+      autoHideMenuBar: true
       });
 
     // and load the index.html of the app.
