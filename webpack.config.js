@@ -2,10 +2,12 @@
 
 var webpack = require('webpack');
 
-let options = {
-  //context: __dirname + '/src',
+var options = {
+  // Should speed up build
   devtool: 'inline-eval-cheap-source-map',
+
   entry: './src/app',
+
   output: {
     path: __dirname + '/build',
     filename: 'bundle.js',
@@ -24,6 +26,9 @@ let options = {
         loaders: ['style', 'css', 'sass'],
         include: __dirname,
         exclude: /node_modules\/[^font]/
+      }, {
+      test: /\.png|\.svg$/,
+      loaders: ['file-loader']
       }
     ]
   }

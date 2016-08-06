@@ -5,8 +5,9 @@
   "description": "Memory training app.",
   "main": "main.js",
   "scripts": {
-    "watch": "webpack --watch",
     "start": "webpack && electron .",
+    "watch": "webpack --watch",
+    "test": "",
     "devstart": "cross-env NODE_ENV=development electron .",
     "server": "babel-node server.js",
     "package-all": "npm run package -- --all",
@@ -17,6 +18,7 @@
     "url": "https://github.com/Breta01/MemoryKing"
   },
   "keywords": [
+    "Memory King",
     "Memory",
     "King",
     "training"

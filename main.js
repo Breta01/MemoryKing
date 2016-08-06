@@ -4,7 +4,8 @@ const electron = require('electron');
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
-// Reloading on changes
+
+// Reloading on changes, maybe can be deleted
 require('electron-reload')(__dirname);
 
 // Keep a global reference of the window object, if you don't, the window will
