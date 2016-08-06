@@ -1,10 +1,9 @@
 'use strict';
 
 var webpack = require('webpack');
+var path = require('path');
 
 var options = {
-  // Should speed up build
-  devtool: 'inline-eval-cheap-source-map',
 
   entry: './src/app',
 
@@ -19,8 +18,7 @@ var options = {
       { 
         test: /\.js$/, 
         loaders: ['babel'],
-        exclude: /node_modules/,
-        include: __dirname
+        include: path.join(__dirname, 'src')
       }, { 
         test: /\.scss?$/,
         loaders: ['style', 'css', 'sass'],
