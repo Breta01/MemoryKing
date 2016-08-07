@@ -15,11 +15,11 @@ var options = {
 
   module: {
     loaders: [
-      { 
-        test: /\.js$/, 
+      {
+        test: /\.js$/,
         loaders: ['babel'],
         include: path.join(__dirname, 'src')
-      }, { 
+      }, {
         test: /\.scss?$/,
         loaders: ['style', 'css', 'sass'],
         include: __dirname,

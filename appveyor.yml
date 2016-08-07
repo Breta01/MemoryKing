@@ -1,6 +1,6 @@
 os: unstable
 cache:
-  - node_modules 
+  - node_modules
 environment:
   matrix:
     - nodejs_version: 6
