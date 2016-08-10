@@ -1,0 +1,38 @@
+$font-base:  1em !default;
+// @TODO download and imporlt local font files for same font accros devices
+$font-stack: 'RobotoDraft', 'Roboto', 'Helvetica', sans-serif !important;
+
+html, body {
+  font-size: $font-base;
+  text-rendering: optimizeLegibility;
+  line-height: 1em;
+  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+  font-family: $font-stack;
+  -webkit-touch-callout: none !important;
+  min-height: 100% !important;
+  -webkit-text-size-adjust: 100% !important;
+  -ms-text-size-adjust: 100% !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+h1 {
+  font-size: 2.25em;
+}
+h2 {
+  font-size: 2em;
+}
+h3 {
+  font-size: 1.75em;
+}
+h4 {
+  font-size: 1.5em;
+}
+h5 {
+  font-size: 1.25em;
+}
+h6 {
+  font-size: 1em;
+}
+p {
+  margin: 0 0 0.75em;
+}

@@ -5,7 +5,7 @@ var path = require('path');
 
 var options = {
 
-  entry: './src/app',
+  entry: './src/index',
 
   output: {
     path: __dirname + '/build',

@@ -4,9 +4,9 @@ var webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
 var config = {
   entry: [
     'webpack-hot-middleware/client?reload=true&path=http://localhost:9000/__webpack_hmr',
-    './src/app',
+    './src/index',
   ],
-  devtool: "eval"
+  devtool: "eval",
   module: {
     loaders: [{
       test: /\.js?$/,

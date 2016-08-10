@@ -1,6 +1,17 @@
-$backgroundColor: #f3f3f3;
-$primaryColor: #249bb3;
-$black-font-color: #333;
+// Abstracts
+@import
+    'abstracts/variables',
+    'abstracts/colors',
+    'abstracts/mixins';
+// Typography
+@import
+    'typography/typography';
+// Layout
+@import
+    'layout/grid';
+// Components
+@import
+    'components/header';
 
 
 * {
@@ -11,10 +22,7 @@ $black-font-color: #333;
 
 body {
   background: $backgroundColor;
-  padding: 20px;
-  font-size: 14px;
   font-family: Helvetica Neue, Arial;
-  font-weight: 200;
   color: $black-font-color;
   overflow-y: scroll;
 }
