@@ -21,5 +21,6 @@ clone_depth: 1
 test_script:
   - node --version
   - npm --version
+  - npm test
   - npm run build
   - npm run package

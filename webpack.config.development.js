@@ -6,10 +6,11 @@ var config = {
     'webpack-hot-middleware/client?reload=true&path=http://localhost:9000/__webpack_hmr',
     './src/app',
   ],
+  devtool: "eval"
   module: {
     loaders: [{
       test: /\.js?$/,
-      loaders: ['babel-loader'],
+      loaders: ['babel'],
       exclude: /node_modules/
     }, {
       test: /\.scss$/,
