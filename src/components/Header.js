@@ -11,6 +11,8 @@ const Header = () => (
                 <a href="#contact"  className='active'>Contact</a></li>
             <li className='links'>
                 <a href="#about">About</a></li>
+            <li className='links'>
+                <a href="#Last">Last</a></li>
         </ul>
 
     </div>

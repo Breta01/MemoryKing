@@ -1,0 +1,23 @@
+.content {
+    &::-webkit-scrollbar {
+    width: 11px;
+    }
+    &::-webkit-scrollbar-track {
+    background-color: $bgColor0;
+    }
+    &::-webkit-scrollbar-track:hover {
+    background-color: $SBTrackHover;
+    border-left: 1px solid $darken1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+    background-color: $SBThumb;
+    border-left: 1px solid $darken1;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+    background-color: $SBThumbHover;
+    }
+    &::-webkit-scrollbar-thumb:active {
+    background-color: $SBThumbActive;
+    }
+}
