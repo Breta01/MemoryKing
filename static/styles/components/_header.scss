@@ -1,0 +1,65 @@
+.header {
+    overflow: hidden;
+    background-color: $mainColor;
+    line-height: 1em;
+
+    ul {
+        list-style-type: none;
+        padding-top: 4px;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    li {
+        float: left;
+        display: block;
+        color: $fgWhite;
+        //margin: 10px;
+    }
+
+    .links {
+        float: right;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 11px;
+        text-align: center;
+
+        a {
+            color: $fgWhite;
+            padding: 12px 16px;
+            text-decoration: none;
+
+            &:hover {
+                background-color: rgba(0,0,0,0.1);
+                // @TODO keep or delete?
+                border-bottom: 4px solid rgba(0,0,0,0.1);
+            }
+
+            &.active {
+                border-bottom: 4px solid $fgWhite;
+            }
+        }
+    }
+
+    .logo {
+        margin: 11px 0 0 12px;
+        // @TODO edit when logo is added
+        font-size: 0.8em;
+    }
+
+    .menu {
+        position: relative;
+        display: block;
+        top: -4px;
+
+        &:hover {
+            background-color: rgba(0,0,0,0.1);
+            border-bottom: 4px solid rgba(0,0,0,0.1);
+        }
+
+        .material-icons {
+            margin: 6px 12px 3px 12px;
+            font-size: 36px;
+        }
+    }
+}

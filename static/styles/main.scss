@@ -18,11 +18,13 @@
   box-sizing: border-box;
   -webkit-user-select: none;
   user-select: none;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: $backgroundColor;
-  font-family: Helvetica Neue, Arial;
-  color: $black-font-color;
-  overflow-y: scroll;
+  background: $bgColor0;
+  color: $fgBlack;
+  overflow-y: hidden;
+  cursor: default;
 }
