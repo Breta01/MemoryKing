@@ -1,7 +1,14 @@
 $bgColor0: #f3f3f3;
-$mainColor: #007AFF;
+$bgColor1: #323544;
+$mainColor: #673AB7;
+$secColor: #FF2D55;
 $fgBlack: #1F1F21;
 $fgWhite: #F7F7F7;
+
+$gray0: #E0E0E0;
+
+$white: white;
+
 $darken1: rgba(0, 0, 0, 0.1);
 
 // Scrollbar
@@ -10,6 +17,8 @@ $SBThumbHover: #aaa;
 $SBThumbActive: #8a8a8a;
 $SBTrackHover: #eaeaea;
 
+
+// *** Can be deleted ***
 // Greens
 $flat-turquoise: #1ABC9C;
 $flat-green-sea: #16A085;
@@ -43,39 +52,3 @@ $flat-clouds: #ECF0F1;
 $flat-silver: #BDC3C7;
 $flat-concrete: #95A5A6;
 $flat-asbestos: #7F8C8D;
-
-// Aliases make colors easier to remember.
-
-// Greens
-$flat-green-1: $flat-turquoise;
-$flat-green-2: $flat-green-sea;
-$flat-green-3: $flat-emerald;
-$flat-green-4: $flat-nephritis;
-
-// Blues
-$flat-blue-1: $flat-peter-river;
-$flat-blue-2: $flat-belize-hole;
-$flat-blue-3: $flat-wet-asphalt;
-$flat-blue-4: $flat-midnight-blue;
-
-// Purples
-$flat-purple-1: $flat-amethyst;
-$flat-purple-2: $flat-wisteria;
-
-// Yellows
-$flat-yellow-1: $flat-sunflower;
-
-// Oranges
-$flat-orange-1: $flat-orange;
-$flat-orange-2: $flat-carrot;
-$flat-orange-3: $flat-pumpkin;
-
-// Refs
-$flat-red-1: $flat-alizarin;
-$flat-red-2: $flat-pomegranate;
-
-// Grays
-$flat-gray-1: $flat-clouds;
-$flat-gray-2: $flat-silver;
-$flat-gray-3: $flat-concrete;
-$flat-gray-4: $flat-asbestos;

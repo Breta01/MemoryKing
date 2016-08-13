@@ -1,19 +1,17 @@
 .header {
     overflow: hidden;
-    background-color: $mainColor;
-    line-height: 1em;
+    background-color: $white;
+    @include box-shadow-1;
 
     ul {
         list-style-type: none;
-        padding-top: 4px;
         margin: 0;
-        overflow: hidden;
     }
 
     li {
         float: left;
         display: block;
-        color: $fgWhite;
+        color: $fgBlack;
     }
 
     ul > .links ~ .links{
@@ -23,12 +21,12 @@
     .links  {
         float: right;
         margin-left: 0;
-        margin-right: 40px;
+        margin-right: 1rem;
         margin-top: 11px;
         text-align: center;
 
         a {
-            color: $fgWhite;
+            color: $fgBlack;
             padding: 12px 16px;
             text-decoration: none;
 
@@ -39,31 +37,20 @@
             }
 
             &.active {
-                border-bottom: 4px solid $fgWhite;
+                border-bottom: 4px solid $mainColor;
+            }
+            &.icon {
+                padding-top: 18px !important;
+                padding-bottom: 5px !important;
             }
         }
     }
 
 
     .logo {
-        margin: 11px 0 0 12px;
+        color: darken($mainColor, 35%);
+        padding: 0.2rem 1rem;
         // @TODO edit when logo is added
         font-size: 0.8em;
-    }
-
-    .menu {
-        position: relative;
-        display: block;
-        top: -4px;
-
-        &:hover {
-            background-color: $darken1;
-            border-bottom: 4px solid $darken1;
-        }
-
-        .material-icons {
-            margin: 6px 12px 3px 12px;
-            font-size: 36px;
-        }
     }
 }

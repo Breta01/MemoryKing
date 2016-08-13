@@ -8,10 +8,12 @@
     'typography/typography';
 // Layout
 @import
-    'layout/grid';
+    'layout/layout';
 // Components
 @import
     'components/header',
+    'components/sidebar',
+    'components/gamecard',
     'components/scrollbar';
 
 

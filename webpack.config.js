@@ -24,9 +24,14 @@ var options = {
         loaders: ['style', 'css', 'sass'],
         include: __dirname,
         exclude: /node_modules\/[^font]/
-      }, {
-      test: /\.png|\.svg$/,
-      loaders: ['file-loader']
+      },
+      /*{
+        test: /\.jpg|\.png|\.svg$/,
+        loaders: ['file-loader']
+        },*/
+      {
+        test: /\.(woff|png|jpg|gif)$/,
+        loader: 'url-loader?limit=100000'
       }
     ]
   }

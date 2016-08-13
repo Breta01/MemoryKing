@@ -1,0 +1,70 @@
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: $bgColor1; //$fgWhite;
+    color: $fgWhite;
+    transition: all 300ms ease;
+    overflow: hidden;
+    z-index: 1;
+    @include inset-box-shadow;
+
+    // @TODO add ripple effect to the buttons
+
+    // Sidebar menu
+    > ul {
+        display: table;
+        width: $sidebarW * 4;
+
+        > li {
+            display: table-row;
+            cursor: pointer;
+
+            &:hover {
+                background: $darken1;
+            }
+
+            &:active {
+                background: darken($fgWhite, 15%);
+            }
+
+            i {
+                width: $sidebarW;
+                text-align: center;
+                top: 0.4rem;
+                position: relative;
+            }
+
+            > div {
+                height: $sidebarW;
+                line-height: $sidebarW;
+                display: table-cell;
+
+                // Icon (firs div)
+                &:nth-child(1) {
+                    width: $sidebarW;
+                    text-align: center;
+                }
+
+                // Text (second div)
+                &:nth-child(2) {
+                    width: $sidebarW * 3;
+                    text-align: left;
+                    padding-left: $sidebarW / 5;
+                }
+            }
+
+            &.user {
+                height: $headerHeight;
+                background-color: $mainColor;
+                color: $fgWhite;
+
+                > div {
+                    line-height: $headerHeight;
+                    height: $headerHeight;
+                }
+            }
+        }
+    }
+}

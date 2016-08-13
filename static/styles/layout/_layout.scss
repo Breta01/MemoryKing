@@ -1,0 +1,33 @@
+.content {
+    overflow-y: scroll;
+    display: inline-block;;
+    position: absolute;
+    width: 100%;
+    height: calc(100% - #{$headerHeight});
+    padding: 1rem 1rem 1rem ($sidebarW * 4 + 1rem);
+
+    @media screen and (max-width: $break-sidebar) {
+        padding-left: $sidebarW + 1rem;
+    }
+}
+
+.header {
+    height: $headerHeight;
+    padding-left: $sidebarW * 4;
+
+    @media screen and (max-width: $break-sidebar) {
+        padding-left: $sidebarW;
+    }
+}
+
+.sidebar {
+    width: $sidebarW * 4;
+
+    @media screen and (max-width: $break-sidebar) {
+        width: $sidebarW;
+        // Expand
+        &:hover {
+            width: $sidebarW * 4;
+        }
+    }
+}

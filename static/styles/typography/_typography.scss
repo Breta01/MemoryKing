@@ -1,4 +1,5 @@
 $font-base:  1em !default;
+
 // @TODO download and imporlt local font files for same font accros devices
 $font-stack: 'RobotoDraft', 'Roboto', 'Helvetica', sans-serif !important;
 
@@ -22,6 +23,7 @@ h2 {
 }
 h3 {
   font-size: 1.75em;
+  font-weight: 400;
 }
 h4 {
   font-size: 1.5em;

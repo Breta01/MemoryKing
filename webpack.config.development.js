@@ -15,10 +15,16 @@ var config = {
     }, {
       test: /\.scss$/,
       loaders: ['style', 'css', 'sass'],
-    }, {
-      test: /\.png|\.svg$/,
+    },
+    /*{
+      test: /\.jpg|\.png|\.svg$/,
       loaders: ['file-loader']
-    }]
+  },*/
+    {
+      test: /\.(woff|png|jpg|gif)$/,
+      loader: 'url-loader?limit=100000'
+    }
+    ]
   },
   output: {
     path: __dirname + '/build',
