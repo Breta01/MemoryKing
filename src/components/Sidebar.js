@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router';
 
 const Sidebar = () => (
     <div className='sidebar'>
@@ -12,8 +13,10 @@ const Sidebar = () => (
               <div>Dashboard</div>
             </li>
             <li>
+                <Link to="/game">
               <i className="material-icons">date_range</i>
               <div>Calendar</div>
+              </Link>
             </li>
             <li>
               <i className="material-icons">settings</i>

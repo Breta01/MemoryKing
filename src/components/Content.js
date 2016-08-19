@@ -1,13 +1,13 @@
-import React from 'react'
-import Gamecard from './Gamecard'
+import React from 'react';
 
-const Content = () => (
-    <div className='content'>
-        <h3>Choose the activity:</h3>
-        <Gamecard />
-        <Gamecard />
-        <Gamecard />
-    </div>
-)
+const Content = React.createClass({
+    render() {
+        return (
+            <div className='content'>
+                {this.props.children}
+            </div>
+        )
+    }
+});
 
 export default Content
