@@ -1,6 +1,6 @@
 import React from 'react';
 
-const App = React.createClass({
+const Main = React.createClass({
     render() {
         return (
             <div>
@@ -10,4 +10,4 @@ const App = React.createClass({
     }
 });
 
-export default App
+export default Main
