@@ -1,4 +1,4 @@
-# Memory King
+![# Memory King](https://cloud.githubusercontent.com/assets/10288864/18133576/71870f46-6f9b-11e6-92d8-3170703fddbf.png)
 [![Build Status](https://travis-ci.org/Breta01/MemoryKing.svg?branch=master)](https://travis-ci.org/Breta01/MemoryKing) [![Build status](https://ci.appveyor.com/api/projects/status/uf59fdw0xbw2la70?svg=true)](https://ci.appveyor.com/project/Breta01/memoryking)
 
 Memory King is memory training app based on techniques used in memory championships.
