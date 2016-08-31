@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Table = () => (
-    <div className="statTable">
-        <h1>I am a stat.</h1>
-    </div>
-)
+const Table = ({ stat }) => (
+            <div className="statTable">
+                <p><strong>{stat.game} Score:</strong> {stat.score}</p>
+            </div>
+        )
+
 
 export default Table;

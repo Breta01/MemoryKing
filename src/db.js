@@ -4,87 +4,57 @@ const memokingDB = (function() {
 
     /** Open conection to the DB **/
     mkDB.open = function(callback) {
-        /*var version = 1;
-        // Open connection to the datastore of version.
         var request = indexedDB.open("memoking");
 
-        // Handle datastore upgrades.
-        request.onupgradeneeded = function(e) {
-            var db = e.target.result;
-            e.target.transaction.onerror = mkDB.onerror;
-
-            // Delete the old datastore.
-            if (db.objectStoreNames.contains('stats')) {
-                db.deleteObjectStore('stats');
-            }
-
-            // Create a new datastore.
+        request.onupgradeneeded = function() {
+            // The database did not previously exist, so create object stores and indexes.
+            var db = request.result;
             var store = db.createObjectStore('stats', {
                 keyPath: 'timestamp'
             });
-            var titleIndex = store.createIndex("by_title", "title");
+            var gameIndex = store.createIndex("by_game", "game");
             var scoreIndex = store.createIndex("by_score", "score");
             var speedIndex = store.createIndex("by_speed", "speed");
-            var scoreIndex = store.createIndex("by_mistakes", "mistakes");
+            var correctIndex = store.createIndex("by_correct", "correct");
+            var mistakesIndex = store.createIndex("by_mistakes", "mistakes");
             var userIndex = store.createIndex("by_user", "user");
 
-            // Populate with initial test data
-            // @TODO delete when ready
-            store.put({ text: "Cards",
-                        timestamp: new Date().getTime()
-                    });
-            store.put({ text: "Numbers",
-                        timestamp: new Date().getTime()
-                    });
-        };
-
-        // Handle successful datastore access.
-        request.onsuccess = function(e) {
-            // Get a reference to the DB.
-            datastore = e.target.result;
-            callback();
-        };
-
-        // Handle errors when opening the datastore.
-        request.onerror = mkDB.onerror;*/
-
-        var request = indexedDB.open("library");
-
-        request.onupgradeneeded = function() {
-        // The database did not previously exist, so create object stores and indexes.
-        var db = request.result;
-        var store = db.createObjectStore("books", {keyPath: "key"});
-        var titleIndex = store.createIndex("by_title", "title", {unique: true});
-        var authorIndex = store.createIndex("by_author", "author");
-
-        // Populate with initial data.
-        store.put({title: "Quarry Memories", author: "Fred", key: 123456});
-        store.put({title: "Water Buffaloes", author: "Fred", key: 234567});
-        store.put({title: "Bedrock Nights", author: "Barney", key: 345678});
+            // Populate with initial TEST data.
+            store.put({game: "Cards", score: 100, speed: 230, correct: 50, mistakes: 2, user: "Breta", timestamp: 1});
+            store.put({game: "Numbers", score: 300, speed: 500, correct: 100, mistakes: 1, user: "Breta", timestamp: 2 });
+            store.put({game: "Cards", score: 50, speed: 300, correct: 20, mistakes: 32, user: "Guest", timestamp: 3});
+            store.put({ game: "Cards", score: 120, speed: 150, correct: 52, mistakes: 0, user: "Breta", timestamp: 5});
         };
 
         request.onsuccess = function() {
             datastore = request.result;
             callback();
         };
+
+        // Handle errors when opening the datastore.
+        request.onerror = mkDB.onerror;
     };
 
     /** Fetch all of the stats in the datastore **/
-    mkDB.fetchStats = function(callback) {
+    mkDB.fetchStats = function(callback, user = "All") {
         var db = datastore;
+        var tx = db.transaction("stats", "readonly");
+        var store = tx.objectStore("stats");
 
+        //Get only certain user data if specified
+        if (user === "All") {
+            var request = store.openCursor(IDBKeyRange.lowerBound(0));
+        } else {
+            var index = store.index("by_user");
+            var request = index.openCursor(IDBKeyRange.only(user));
+        }
 
-        var tx = db.transaction("books", "readonly");
-        var store = tx.objectStore("books");
-        var index = store.index("by_author");
-
-        var request = store.openCursor(IDBKeyRange.lowerBound(0));
         var stats = [];
+
         request.onsuccess = function() {
             var cursor = request.result;
             if (cursor) {
                 // Called for each matching record.
-                console.log(cursor.value.isbn, cursor.value.title, cursor.value.author);
                 console.log(cursor.value);
                 stats.push(cursor.value);
                 cursor.continue();
@@ -93,42 +63,18 @@ const memokingDB = (function() {
                 console.log(null);
             }
         };
+
         tx.oncomplete = function() {
             console.log(stats);
             callback(stats);
         };
-        /*var db = datastore;
-        var transaction = db.transaction(['stats'], 'readwrite');
-        var objStore = transaction.objectStore('stats');
 
-        // Select all keys from 0 up
-        var keyRange = IDBKeyRange.lowerBound(0);
-        var cursorRequest = objStore.openCursor(keyRange);
-
-        var stats = [];
-
-        transaction.oncomplete = function(e) {
-            callback(stats);
-        };
-
-        cursorRequest.onsuccess = function(e) {
-            var result = e.target.result;
-
-            if (!!result == false) {
-                return;
-            }
-
-            stats.push(result.value);
-
-            result.continue();
-        };
-
-        cursorRequest.onerror = mkDB.onerror;*/
+        request.onerror = mkDB.onerror;
     };
 
     /** Create a new stat **/
     // @TODO rework function, to pass object and database to put object (putting stats and settings) maybe?
-    mkDB.createStat = function(title, score, speed, mistakes, user, callback) {
+    mkDB.createStat = function(title, score, speed, mistakes, correct, user, callback) {
         var db = datastore;
         var transaction = db.transaction(['stats'], 'readwrite');
         var objStore = transaction.objectStore('stats');
@@ -138,12 +84,13 @@ const memokingDB = (function() {
 
         // Create an object for the todo item.
         var stat = {
-            'title': title,
-            'score': score,
-            'speed': speed,
-            'mistakes': mistakes,
-            'user': user,
-            'timestamp': timestamp
+            game: title,
+            score: score,
+            speed: speed,
+            correct: correct,
+            mistakes: mistakes,
+            user: user,
+            timestamp: timestamp
         };
 
         // Create the datastore request.
@@ -175,6 +122,9 @@ const memokingDB = (function() {
         }
     };
 
+    mkDB.onerror = function() {
+        console.log("Something went wrong! Error in database");
+    }
 
     // Export the mkDB object.
     return mkDB;
