@@ -3,6 +3,11 @@
     background-color: $white;
     @include box-shadow-1;
 
+    h1 {
+        padding-top: 3px;
+        margin-top: 0;
+    }
+
     ul {
         list-style-type: none;
         margin: 0;
@@ -11,46 +16,57 @@
     li {
         float: left;
         display: block;
-        color: $fgBlack;
     }
 
-    ul > .links ~ .links{
-        // margin only for last (first in HTML file) link
-        margin-right: 0;
-    }
     .links  {
         float: right;
-        margin-left: 0;
         margin-right: 1rem;
-        margin-top: 11px;
+        margin-top: 0;
+        padding-top: 0;
         text-align: center;
-
-        a {
-            color: $fgBlack;
-            padding: 12px 16px;
-            text-decoration: none;
-
-            &:hover {
-                background-color: $darken1;
-                // @TODO keep or delete?
-                border-bottom: 4px solid $darken1;
-            }
-
-            &.active {
-                border-bottom: 4px solid $mainColor;
-            }
-            &.icon {
-                padding-top: 18px !important;
-                padding-bottom: 5px !important;
+        button {
+            color: $gray2 !important;
+            border-radius: 0;
+            &#active {
+                border-bottom: 3px solid $mainColor;
             }
         }
+
     }
 
+    .user  {
+        float: right;
+        margin-right: 1rem;
+        margin-top: 0;
+        padding-top: 0;
+        text-align: center;
+        margin-left: 1rem;
+        margin-top: 6px;
+    }
 
     .logo {
         color: darken($mainColor, 35%);
         padding: 0.2rem 1rem;
         // @TODO edit when logo is added
         font-size: 0.8em;
+    }
+
+    //UserChip styles
+    .mdl-chip__contact {
+        padding-top: 4px;
+    }
+    .mdl-chip__text {
+        padding-left: 5px;
+        padding-right: 5px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+    .mdl-chip--action {
+        transition-duration: 0.3s;
+        transform: rotate(0deg);
+
+        &:hover {
+            transform: rotate(120deg);
+        }
     }
 }

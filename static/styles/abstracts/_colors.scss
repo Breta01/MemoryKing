@@ -6,6 +6,7 @@ $fgBlack: #1F1F21;
 $fgWhite: #F7F7F7;
 
 $gray0: #E0E0E0;
+$gray2: #616161;
 
 $white: white;
 
@@ -52,3 +53,7 @@ $flat-clouds: #ECF0F1;
 $flat-silver: #BDC3C7;
 $flat-concrete: #95A5A6;
 $flat-asbestos: #7F8C8D;
+
+.bgcolor--main {
+    background-color: $mainColor;
+}
