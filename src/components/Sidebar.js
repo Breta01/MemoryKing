@@ -3,33 +3,31 @@ import { Link } from 'react-router';
 
 const Sidebar = () => (
     <div className='sidebar'>
-        <ul>
-            <li className="user">
+        <ul className="mdl-navigation">
+            <Link to="" className="mdl-navigation__link"><li className="user">
                 <i className="material-icons">face</i>
                 <div>Hello, <b>Breta H.</b></div>
-            </li>
-            <li>
+            </li></Link>
+            <Link to="/" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
               <i className="material-icons">dashboard</i>
               <div>Dashboard</div>
-            </li>
-            <li>
-                <Link to="/game">
+            </li></Link>
+            <Link to="/game" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
               <i className="material-icons">date_range</i>
               <div>Calendar</div>
-              </Link>
-            </li>
-            <li>
+            </li></Link>
+            <Link to="/game" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
               <i className="material-icons">settings</i>
               <div>Settings</div>
-            </li>
-            <li>
+            </li></Link>
+            <Link to="/game" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
               <div>1</div>
               <div>One</div>
-            </li>
-            <li>
+            </li></Link>
+            <Link to="/game" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
               <div>2</div>
               <div>Two</div>
-            </li>
+            </li></Link>
         </ul>
     </div>
 )

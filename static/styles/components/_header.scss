@@ -69,4 +69,11 @@
             transform: rotate(120deg);
         }
     }
+    .mdl-menu__container.is-visible {
+        right: 1.5rem !important;
+        top: 2.5rem !important;
+    }
+    .mdl-menu__container.is-visible .mdl-menu__item {
+        width: 100%;
+    }
 }

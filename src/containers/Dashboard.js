@@ -16,7 +16,7 @@ class Dashboard extends Component {
                 <Content>
 
                     <form id="new-todo-form" method="POST" action="#">
-                        <input type="text" name="new-todo" id="new-todo" placeholder="Enter a todo item..." required></input>
+                        <input type="text" name="new-todo" id="new-todo" placeholder="Enter a text..." required></input>
                     </form>
 
                     <h3>Choose the activity:</h3>

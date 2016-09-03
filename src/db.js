@@ -35,7 +35,7 @@ const memokingDB = (function() {
         request.onerror = mkDB.onerror;
     };
 
-    /** Fetch all of the stats in the datastore **/
+    /** Fetch all of the stats from the datastore **/
     mkDB.fetchStats = function(callback, user = "All") {
         var db = datastore;
         var tx = db.transaction("stats", "readonly");
@@ -49,15 +49,15 @@ const memokingDB = (function() {
             var request = index.openCursor(IDBKeyRange.only(user));
         }
 
+        // Storing loaded stats
         var stats = [];
 
         request.onsuccess = function() {
-            var cursor = request.result;
-            if (cursor) {
+            var res = request.result;
+            if (res) {
                 // Called for each matching record.
-                console.log(cursor.value);
-                stats.push(cursor.value);
-                cursor.continue();
+                stats.push(res.value);
+                res.continue();
             } else {
                 // No more matching records.
                 console.log(null);
@@ -73,16 +73,16 @@ const memokingDB = (function() {
     };
 
     /** Create a new stat **/
-    // @TODO rework function, to pass object and database to put object (putting stats and settings) maybe?
+    // @TODO rework function, to pass object and database to put object (putting stats and settings)
     mkDB.createStat = function(title, score, speed, mistakes, correct, user, callback) {
         var db = datastore;
         var transaction = db.transaction(['stats'], 'readwrite');
         var objStore = transaction.objectStore('stats');
 
-        // Create a timestamp for the todo item. (this is key value)
+        // Create a timestamp for the stat item. (this is key value)
         var timestamp = new Date().getTime();
 
-        // Create an object for the todo item.
+        // Create an object for the stat item.
         var stat = {
             game: title,
             score: score,
