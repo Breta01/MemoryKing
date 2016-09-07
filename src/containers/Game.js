@@ -6,12 +6,8 @@ import Sidebar from '../components/Sidebar';
 
 const Game = () => (
     <div className="game">
-    <Header />
-    <Sidebar />
-    <Content>
         <h1>Welcome to the game</h1>
         <Link to="/">Go to Dashboard</Link>
-    </Content>
     </div>
 )
 

@@ -10,8 +10,6 @@
     z-index: 1;
     @include inset-box-shadow;
 
-    // @TODO add ripple effect to the buttons
-
     // Sidebar menu
     ul {
         display: table;
@@ -22,8 +20,11 @@
             font-weight: inherit;
             text-decoration: none;
             &.mdl-js-ripple-effect {
-                display: inline-block;//Important, without that the button won't appear correctly
-                position: relative; //without it, ripple will be offset
+                display: inline-block; //Important, without that the button won't appear correctly
+                position: relative;    //without it, ripple will be offset
+            }
+            &.active {
+                background: $darken1;
             }
         }
 
@@ -31,18 +32,9 @@
             display: table-row;
             cursor: pointer;
 
-            /*&:hover {
-                background: $darken1;
-            }
-
-            &:active {
-                background: darken($fgWhite, 15%);
-            }*/
-
             i {
                 width: $sidebarW;
                 text-align: center;
-                top: 0.4rem;
                 position: relative;
             }
 
