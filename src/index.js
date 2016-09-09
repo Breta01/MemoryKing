@@ -11,6 +11,9 @@ import App from './components/App';
 import Game from './containers/Game';
 import DashboardContent from './components/DashboardContent';
 
+// Games
+import NumbersGame from './games/NumbersGame';
+
 // Router for switching pages
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
@@ -22,7 +25,7 @@ const routes = (
         <Router history={history}>
             <Route path="/" component={App}>
                     <IndexRoute component={DashboardContent}></IndexRoute>
-                    <Route path="/game" component={Game}></Route>
+                    <Route path="/game" component={NumbersGame}></Route>
             </Route>
         </Router>
     </Provider>
