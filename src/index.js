@@ -8,7 +8,6 @@ import css from '../static/styles/main.scss';
 
 // Containers import
 import App from './components/App';
-import Game from './containers/Game';
 import DashboardContent from './components/DashboardContent';
 
 // Games
