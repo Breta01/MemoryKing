@@ -15,8 +15,6 @@ const NumbersGame = React.createClass({
         )
     },
     componentDidMount: function() {
-        // Upgrading all Material Design Lite upgradable components
-        // Only important for dynamicaly loading components
         gameNumbers.start(5);
     }
 });

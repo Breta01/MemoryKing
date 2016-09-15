@@ -1,3 +1,6 @@
+import memokingDB from '../db.js'
+
+
 const gameNumbers = (function() {
     var num = {};
     var generatedNumbers = [];
@@ -10,6 +13,7 @@ const gameNumbers = (function() {
         return Math.floor(Math.random() * (max + 1));
     }
 
+	// Initializing the variables
     num.start = function(time) {
         console.log("starting numbers!")
         generatedNumbers = [];
@@ -29,6 +33,7 @@ const gameNumbers = (function() {
         });
     };
 
+	// Correcting the user input
     num.correct = function(remainingTime = 0) {
         var inputs = document.getElementsByName("numberInput");
         for (var i = 0; i < inputs.length; i++) {
@@ -53,6 +58,7 @@ const gameNumbers = (function() {
         num.sendScore(score);
     };
 
+	// Swithing state from numbers learning to user value inputing
     num.changeState = function() {
         console.log("Changing state");
         if (state === 0) {
@@ -76,8 +82,10 @@ const gameNumbers = (function() {
         }
     };
 
+	// Uploading score to the databasek
     num.sendScore = function(score) {
-        console.log("Sending the results to database.");
+        console.log("Sending the results to database; results are: " + score);
+		memokingDB.createStat();
     };
 
     return num;

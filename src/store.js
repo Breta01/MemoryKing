@@ -1,7 +1,7 @@
 import { createStore, compose } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { hashHistory } from 'react-router';
-import memokingDB from './db.js';
+import memokingDB from './db';
 import { loadStats } from './actions/actionCreators';
 
 import rootReducer from './reducers/index';

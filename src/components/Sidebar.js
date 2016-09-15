@@ -1,6 +1,10 @@
 import React from 'react'
 import { IndexLink } from 'react-router';
 
+
+// @TODO add component with gamecards directing to the specific games
+
+
 const Sidebar = () => (
     <div className='sidebar'>
         <ul className="mdl-navigation">
@@ -13,18 +17,18 @@ const Sidebar = () => (
               <div>Dashboard</div>
             </li></IndexLink>
             <IndexLink to="/game" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
-              <i className="material-icons">date_range</i>
-              <div>Calendar</div>
+              <i className="material-icons">apps</i>
+              <div>Apps</div>
             </li></IndexLink>
-            <IndexLink to="/game" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
+            <IndexLink to="/test" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
               <i className="material-icons">settings</i>
               <div>Settings</div>
             </li></IndexLink>
-            <IndexLink to="/game" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
+            <IndexLink to="/test" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
               <div>1</div>
-              <div>One</div>
+              <div>Calendar</div>
             </li></IndexLink>
-            <IndexLink to="/game" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
+            <IndexLink to="/test" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
               <div>2</div>
               <div>Two</div>
             </li></IndexLink>

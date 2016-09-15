@@ -16,7 +16,7 @@ const Main = React.createClass({
         )
     },
     componentDidUpdate: function() {
-        // Upgrading all Material Design Lite upgradable components
+        // Updating all Material Design Lite updatable components
         // Only important for dynamicaly loading components
         componentHandler.upgradeDom();
     }
