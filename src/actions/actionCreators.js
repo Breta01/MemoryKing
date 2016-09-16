@@ -7,11 +7,10 @@ export function loadStats(stats) {
 }
 
 // Add stats
-export function addStats(gameId, score) {
+export function addStats(stat) {
     return {
         type: 'ADD_STATS',
-        gameId,
-        score
+        stat: stat
     }
 }
 

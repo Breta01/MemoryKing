@@ -1,4 +1,5 @@
-import memokingDB from '../db.js'
+import { addStats } from '../actions/actionCreators';
+import store from '../store';
 
 
 const gameNumbers = (function() {
@@ -62,30 +63,34 @@ const gameNumbers = (function() {
     num.changeState = function() {
         console.log("Changing state");
         if (state === 0) {
+            state++;
             var render = "";
             for (var i=0; i < generatedNumbers.length; i++) {
                 // @TODO add max input size and automatic tabing, check this: http://autotab.mathachew.com/
                 render += "<input type='number' name='numberInput' size='20'>";
             }
             document.getElementById("gameContent").innerHTML = render;
-            state++;
-        } else if (state === 1) {
-            num.correct();
-            state++;
 
+        } else if (state === 1) {
+            state++;
             // I will instantly redirect to the Dashboard without timeout
             setTimeout(function(){
                 button.innerHTML = 'Back to Dashboard';
                 button.href = "#/";
-            }, 50);
+            }, 20);
+
+            num.correct();
 
         }
     };
 
-	// Uploading score to the databasek
+	// Uploading score to the database using Redux action
     num.sendScore = function(score) {
-        console.log("Sending the results to database; results are: " + score);
-		memokingDB.createStat();
+        var stat = {
+            game: "Numbers",
+            score: score
+        };
+		store.dispatch(addStats(stat));
     };
 
     return num;
