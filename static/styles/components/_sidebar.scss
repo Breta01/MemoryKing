@@ -28,6 +28,10 @@
             }
         }
 
+		.full-opacity {
+			opacity: 1;
+		}
+
         li {
             display: table-row;
             cursor: pointer;
@@ -60,11 +64,19 @@
             &.user {
                 height: $headerHeight;
                 background-color: $mainColor;
-                color: $fgWhite;
+                color: white;
+
+				img {
+					width: 35px;
+				}
 
                 div {
+					font-size: 20px;
                     line-height: $headerHeight;
                     height: $headerHeight;
+					b {
+						font-weight: normal;
+					}
                 }
             }
         }

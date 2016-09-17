@@ -7,6 +7,7 @@ const gameNumbers = (function() {
     var generatedNumbers = [];
     var userNumbers = [];
     var state = 0;
+	var line = 20;
     var button;
 
     // Generate random number
@@ -15,20 +16,24 @@ const gameNumbers = (function() {
     }
 
 	// Initializing the variables
-    num.start = function(time) {
+    num.start = function(time, line=20) {
         console.log("starting numbers!")
         generatedNumbers = [];
         userNumbers = [];
         state = 0;
         button = document.getElementById("gameSubmit");
         var print = "";
-        for (var i=0; i < 10; i++) {
-            var rnd = getRandom();
-            generatedNumbers.push(rnd);
-            print += rnd + " ";
-        }
+		for (var r=0; r < 10; r++) {
+			print += "<tr>";
+        	for (var i=0; i < line; i++) {
+        	    var rnd = getRandom();
+        	    generatedNumbers.push(rnd);
+        	    print += "<td>" + rnd + "</td>";
+        	}
+			print += "</tr>";
+		}
         console.log(generatedNumbers);
-        document.getElementById("gameContent").innerHTML = print;
+        document.getElementById("gameTable").innerHTML = print;
         button.addEventListener("click", function () {
             num.changeState();
         });
@@ -65,11 +70,16 @@ const gameNumbers = (function() {
         if (state === 0) {
             state++;
             var render = "";
-            for (var i=0; i < generatedNumbers.length; i++) {
-                // @TODO add max input size and automatic tabing, check this: http://autotab.mathachew.com/
-                render += "<input type='number' name='numberInput' size='20'>";
-            }
-            document.getElementById("gameContent").innerHTML = render;
+			for (var r=0; r < generatedNumbers.length / line; r++) {
+				render += "<tr>";
+				for (var i=0; i < line; i++) {
+					// @TODO add max input size and automatic tabing, check this: http://autotab.mathachew.com/
+					render += "<td class='quantity' style='width: " + 100/line + "%;'><input type='number' name='numberInput' size='1'></td>";
+				}
+				render += "</tr>";
+			}
+            document.getElementById("gameTable").innerHTML = render;
+			button.innerHTML = "Submit";
 
         } else if (state === 1) {
             state++;

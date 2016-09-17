@@ -8,9 +8,9 @@ import { IndexLink } from 'react-router';
 const Sidebar = () => (
     <div className='sidebar'>
         <ul className="mdl-navigation">
-            <IndexLink to="" className="mdl-navigation__link"><li className="user">
-                <i className="material-icons">face</i>
-                <div>Hello, <b>Breta H.</b></div>
+            <IndexLink to="" className="mdl-navigation__link full-opacity"><li className="user">
+                <div><img src="./static/img/logo-icon.png" /></div>
+                <div><b>Memory King</b></div>
             </li></IndexLink>
             <IndexLink to="/" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
               <i className="material-icons">dashboard</i>

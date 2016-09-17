@@ -5,7 +5,6 @@ const Header = () => (
     <div className='header'>
         <ul>
             <li className='logo'>
-                <h1>Memory King</h1>
             </li>
             <li className='user'>
                 <UserChip name="Breta" />
