@@ -22,21 +22,11 @@ const NumbersGame = React.createClass({
 
 	componentDidMount: function() {
         gameNumbers.start(5);
+		window.addEventListener("keyup", gameNumbers.changeFocus);
     },
 
-	handleKeyDown: function(e) {
-		var ENTER = 13;
-		console.log("Key: " + e.keyCode);
-		if( e.keyCode == ENTER ) {
-			console.log("ENTER pressd");
-		}
-	},
-
-	handleFocus: function(id) {
-		var child = this.refs['child' + id];
-		if (!child) return;
-		var input = child.refs.input;
-		input.getDOMNode().focus();
+	compenentWillUnmount: function() {
+		window.removeEventListener("keyup", gameNumbers.changeFocus);
 	}
 });
 

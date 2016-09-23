@@ -9,6 +9,9 @@ const gameNumbers = (function() {
     var state = 0;
 	var line = 20;
     var button;
+	var maxLength = 1;
+	var id = 1;
+	var focus = "focus";
 
     // Generate random number
     function getRandom(max = 9) {
@@ -21,6 +24,7 @@ const gameNumbers = (function() {
         generatedNumbers = [];
         userNumbers = [];
         state = 0;
+		id = 1;
         button = document.getElementById("gameSubmit");
         var print = "";
 		for (var r=0; r < 10; r++) {
@@ -28,12 +32,13 @@ const gameNumbers = (function() {
         	for (var i=0; i < line; i++) {
         	    var rnd = getRandom();
         	    generatedNumbers.push(rnd);
-        	    print += "<td>" + rnd + "</td>";
+        	    print += "<td id='" + ((r*line)+i+1) + "'>" + rnd + "</td>";
         	}
 			print += "</tr>";
 		}
         console.log(generatedNumbers);
         document.getElementById("gameTable").innerHTML = print;
+		document.getElementById("1").classList.add(focus);
         button.addEventListener("click", function () {
             num.changeState();
         });
@@ -69,16 +74,20 @@ const gameNumbers = (function() {
         console.log("Changing state");
         if (state === 0) {
             state++;
+			id = 1;
             var render = "";
 			for (var r=0; r < generatedNumbers.length / line; r++) {
 				render += "<tr>";
 				for (var i=0; i < line; i++) {
 					// @TODO add max input size and automatic tabing, check this: http://autotab.mathachew.com/
-					render += "<td class='quantity' style='width: " + 100/line + "%;'><input type='number' name='numberInput' size='1'></td>";
+					render += "<td class='quantity' style='width: " + 100/line 
+						+ "%;'><input type='number' name='numberInput' size='1' id='" 
+						+ ((line*r)+i+1) + "'></td>";
 				}
 				render += "</tr>";
 			}
             document.getElementById("gameTable").innerHTML = render;
+			document.getElementById("1").focus();
 			button.innerHTML = "Submit";
 
         } else if (state === 1) {
@@ -90,9 +99,33 @@ const gameNumbers = (function() {
             }, 20);
 
             num.correct();
-
         }
     };
+	
+
+	// Changing focus on elements on key press
+	var update = function () {
+		document.getElementById('' + id).classList.remove(focus);
+		id++;
+		document.getElementById('' + id).classList.add(focus);
+	};
+
+
+	num.changeFocus = function(e) {
+		// Use atually focused element
+		var focused = document.activeElement.id;
+		if (focused) {
+			id = parseInt(focused);
+		}
+
+		if (state === 1 && document.getElementById('' + id).value.length >= maxLength) {
+			update();
+			document.getElementById('' + id).focus();
+		} else if (state === 0) {
+			update();
+		}
+	};
+
 
 	// Uploading score to the database using Redux action
     num.sendScore = function(score) {
