@@ -1,4 +1,5 @@
 .game {
+	position: relative;
 
 	#gameContent {
 		table {
@@ -12,17 +13,61 @@
 				padding: 0;
 				margin: 0;
 				text-align: center;
-			
+
 				&.focus {
 					background-color: $gray0;
 				}
 
 				input {
 					width: 100%;
+					height: 100%;
 					border-style: none;
 					text-align:center;
 				}
 			}
 		}
+	}
+
+	#gameController {
+		text-align: right;
+		margin-bottom: 1rem;
+
+		#gameSubmit {
+			cursor: pointer;
+			background-color: $gray0;
+			border-radius: 2px;
+			position: relative;
+			height: 36px;
+			margin: 0;
+			min-width: 64px;
+			padding: 0 16px;
+			display: inline-block;
+			font-size: 14px;
+			text-transform: uppercase;
+			transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);
+			text-decoration: none;
+			text-align: center;
+			line-height: 36px;
+			vertical-align: middle;
+			&:hover {
+				background: $darken1;
+			}
+			&:active {
+				background: $darken2;
+			}
+		}
+
+		#timer {
+			margin: 0;
+		}
+	}
+
+	#actualNumber {
+		z-index: -10;
+		position: absolute;
+		width: 100%;
+		margin-top: 1rem;
+		font-weight: bold;
+		text-align: center;
 	}
 }

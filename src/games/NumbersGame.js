@@ -6,16 +6,24 @@ const NumbersGame = React.createClass({
     render() {
         return (
             <div className="game">
-                <h1>Numbers:</h1>
+                <h1 id="actualNumber">..</h1>
+
+				<div id="gameController">
+					<h1 id="timer">
+						<span id="hour"></span>
+						<span id="min">00</span>:
+						<span id="sec">00</span>.
+						<span id="hsec">00</span>
+					</h1>
+					<a id="gameSubmit">Continue</a>
+				</div>
+
                 <div id="gameContent">
 					<table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 						<tbody id="gameTable">
 						</tbody>
 					</table>
 				</div>
-                <div id="gameControler">
-                    <a id="gameSubmit">Continue</a>
-                </div>
             </div>
         )
     },
@@ -27,6 +35,7 @@ const NumbersGame = React.createClass({
 
 	compenentWillUnmount: function() {
 		window.removeEventListener("keyup", gameNumbers.changeFocus);
+		gameNumbers.removeTimer();
 	}
 });
 

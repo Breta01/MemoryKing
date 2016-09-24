@@ -3,110 +3,183 @@ import store from '../store';
 
 
 const gameNumbers = (function() {
-    var num = {};
-    var generatedNumbers = [];
-    var userNumbers = [];
-    var state = 0;
+	var num = {};
+
+	var generatedNumbers = [];
+	var userNumbers = [];
+
+	// @TODO should be initialized on start
+	var state = 0;
 	var line = 20;
-    var button;
-	var maxLength = 1;
+	var maxLength = 2;
+	var memTime = 5; // In minutes
+	var recTime = 5;
+
+	var timer;
+	var button;
+	var actualNumber;
 	var id = 1;
 	var focus = "focus";
 
-    // Generate random number
-    function getRandom(max = 9) {
-        return Math.floor(Math.random() * (max + 1));
-    }
+	// Generate random number
+	function getRandom(max = 10) {
+		return Math.floor(Math.random() * (max));
+	}
+
+	// Timer
+	num.startTimer = function(maxTime) {
+		console.log("Timer");
+		var ms = 0;
+		var timestamp = +new Date;
+		var pad = function (val) {
+			return val > 9 ? val : "0" + val;
+		}
+
+		timer = setInterval(function () {
+			var now = +new Date;
+			var diff = now - timestamp;
+			ms += diff;
+			document.getElementById("hsec").innerHTML = pad(parseInt(ms/10 % 100));
+			document.getElementById("sec").innerHTML = pad(parseInt(ms / 1000 % 60, 10));
+			document.getElementById("min").innerHTML = pad(parseInt(ms / 60000 % 60, 10));
+			document.getElementById("hour").innerHTML = (ms > 3600000) ? pad(parseInt(ms / 3600000 % 60, 10)) + ":" : "";
+
+			// When the user run out of time
+			if (ms / 60000  >= maxTime) {
+				num.changeState();
+				console.log("Time to recall");
+			}
+
+			timestamp = now;
+
+		}, 10);
+	}
+
+	// Remove timer - when user leave or end
+	num.removeTimer = function() {
+		clearInterval(timer);
+	}
 
 	// Initializing the variables
-    num.start = function(time, line=20) {
-        console.log("starting numbers!")
-        generatedNumbers = [];
-        userNumbers = [];
-        state = 0;
+	num.start = function(time, line=20) {
+		console.log("starting numbers!"); // @DEBUG
+
+		generatedNumbers = [];
+		userNumbers = [];
+		state = 0;
 		id = 1;
-        button = document.getElementById("gameSubmit");
-        var print = "";
+		button = document.getElementById("gameSubmit");
+		actualNumber = document.getElementById("actualNumber");
+
+		num.removeTimer();
+		num.startTimer(memTime);
+		var print = "";
+
 		for (var r=0; r < 10; r++) {
 			print += "<tr>";
-        	for (var i=0; i < line; i++) {
-        	    var rnd = getRandom();
-        	    generatedNumbers.push(rnd);
-        	    print += "<td id='" + ((r*line)+i+1) + "'>" + rnd + "</td>";
-        	}
+			for (var i=0; i < line; i++) {
+				var rnd = getRandom(Math.pow(10, maxLength));
+				var rndNum = ("0000000000" + rnd).slice(-maxLength);
+				generatedNumbers.push(rndNum); // generatedNumbers are actually string ;)
+				print += "<td id='" + ((r*line)+i+1) + "'>" + rndNum + "</td>";
+			}
 			print += "</tr>";
 		}
-        console.log(generatedNumbers);
-        document.getElementById("gameTable").innerHTML = print;
+		console.log(generatedNumbers); // @DEBUG - only for debugging
+
+		document.getElementById("gameTable").innerHTML = print;
 		document.getElementById("1").classList.add(focus);
-        button.addEventListener("click", function () {
-            num.changeState();
-        });
-    };
+		actualNumber.innerHTML = generatedNumbers[0];
+		button.addEventListener("click", function () {
+			num.changeState();
+		});
+	};
+
 
 	// Correcting the user input
-    num.correct = function(remainingTime = 0) {
-        var inputs = document.getElementsByName("numberInput");
-        for (var i = 0; i < inputs.length; i++) {
-            userNumbers.push(inputs[i].value);
-        }
-        console.log(userNumbers);
+	num.correct = function(remainingTime = 0) {
+		var inputs = document.getElementsByName("numberInput");
 
-        var correct = 0;
-        var mistakes = 0;
+		for (var i = 0; i < inputs.length; i++) {
+			userNumbers.push(inputs[i].value);
+		}
+		console.log(userNumbers); // @DEBUG
 
-        for (var i = 0; i < userNumbers.length; i++) {
-            if (userNumbers[i] == generatedNumbers[i] && userNumbers[i] !== "") {
-                correct++;
-            } else if (userNumbers[i] !== "") {
-                mistakes++;
-            }
-        }
+		var correct = 0;
+		var mistakes = 0;
+		var bMistakes = 0;
 
-        var score = correct * 5;
-        console.log("Correct: " + correct + " mistakes: " + mistakes);
-        document.getElementById("gameContent").innerHTML = "Correct: " + correct + " mistakes: " + mistakes;
-        num.sendScore(score);
-    };
+		for (var i = 0; i < userNumbers.length; i++) {
+			// Have to check each digit
+			for (var j = 0; j < maxLength; j++) {
+				if (String(userNumbers[i]).charAt(j) == generatedNumbers[i].charAt(j)
+					&& String(userNumbers[i]).charAt(j) !== "") {
+					correct++;
+					mistakes += bMistakes;
+					bMistakes = 0;
+				} else if (String(userNumbers[i]).charAt(j) !== "") {
+					mistakes++;
+					mistakes += bMistakes;
+					bMistakes = 0;
+				} else {
+					bMistakes++;
+				}
+			}
+		}
+
+		// @TODO correct score formula
+		var score = correct * 5;
+		console.log("Correct: " + correct + " mistakes: " + mistakes);
+		document.getElementById("gameContent").innerHTML = "Correct: " + correct + " mistakes: " + mistakes;
+		num.sendScore(score);
+	};
+
 
 	// Swithing state from numbers learning to user value inputing
-    num.changeState = function() {
-        console.log("Changing state");
-        if (state === 0) {
-            state++;
+	num.changeState = function() {
+		console.log("Changing state"); // @DEBUG
+		if (state === 0) {
+			state++;
 			id = 1;
-            var render = "";
+			var render = "";
 			for (var r=0; r < generatedNumbers.length / line; r++) {
 				render += "<tr>";
 				for (var i=0; i < line; i++) {
 					// @TODO add max input size and automatic tabing, check this: http://autotab.mathachew.com/
-					render += "<td class='quantity' style='width: " + 100/line 
-						+ "%;'><input type='number' name='numberInput' size='1' id='" 
+					render += "<td class='quantity' style='width: " + 100/line
+						+ "%;'><input type='number' onClick='this.select()' name='numberInput' size='1' id='"
 						+ ((line*r)+i+1) + "'></td>";
 				}
 				render += "</tr>";
 			}
-            document.getElementById("gameTable").innerHTML = render;
+
+			document.getElementById("gameTable").innerHTML = render;
 			document.getElementById("1").focus();
+			actualNumber.remove();
+			num.removeTimer();
+			num.startTimer(recTime);
 			button.innerHTML = "Submit";
 
-        } else if (state === 1) {
-            state++;
-            // I will instantly redirect to the Dashboard without timeout
-            setTimeout(function(){
-                button.innerHTML = 'Back to Dashboard';
-                button.href = "#/";
-            }, 20);
+		} else if (state === 1) {
+			// @TODO show all stats
+			state++;
+			num.removeTimer();
+			document.getElementById("timer").remove();
+			// It will instantly redirect to the Dashboard without timeout
+			setTimeout(function(){
+				button.innerHTML = 'Back to Dashboard';
+				button.href = "#/";
+			}, 20);
 
-            num.correct();
-        }
-    };
-	
+			num.correct();
+		}
+	};
+
 
 	// Changing focus on elements on key press
-	var update = function () {
+	var update = function (add = 1) {
 		document.getElementById('' + id).classList.remove(focus);
-		id++;
+		id += add;
 		document.getElementById('' + id).classList.add(focus);
 	};
 
@@ -118,25 +191,63 @@ const gameNumbers = (function() {
 			id = parseInt(focused);
 		}
 
-		if (state === 1 && document.getElementById('' + id).value.length >= maxLength) {
-			update();
-			document.getElementById('' + id).focus();
-		} else if (state === 0) {
-			update();
+		var add = 1;
+		var key = false;
+		var isUpDown = false;
+		switch(e.keyCode) {
+			case 37:  // Left arr
+				add = -1;
+				key = true;
+				break;
+			case 38:  // Top arr
+				add = -line;
+				isUpDown = true;
+				break;
+			case 39:  // Right arr
+				add = 1;
+				key = true;
+				break;
+			case 40:  // Down arr
+				add = line;
+				isUpDown = true;
+				break;
+			case 13:  // Enter
+				// @TODO ask if he really want to finish
+				num.changeState();
+				break;
+			default:
+				add = 1
+				break;
+		}
+		if (id+add <= generatedNumbers.length
+			&& id+add >=1) {
+			if (state === 1
+				&& document.getElementById('' + id).value.length >= maxLength
+				&& !isUpDown
+				|| key && state === 1) {
+
+				update(add);
+				document.getElementById('' + id).focus();
+				document.getElementById('' + id).select();
+			} else if (state === 0) {
+				update(add);
+				actualNumber.innerHTML = generatedNumbers[id-1];
+			}
 		}
 	};
 
 
 	// Uploading score to the database using Redux action
-    num.sendScore = function(score) {
-        var stat = {
-            game: "Numbers",
-            score: score
-        };
+	// @TODO send complete stats
+	num.sendScore = function(score) {
+		var stat = {
+			game: "Numbers",
+			score: score
+		};
 		store.dispatch(addStats(stat));
-    };
+	};
 
-    return num;
+	return num;
 }());
 
 export default gameNumbers;
