@@ -24,7 +24,7 @@ const gameNumbers = (function() {
 	// Generate random number
 	function getRandom(max = 10) {
 		return Math.floor(Math.random() * (max));
-	}
+	};
 
 	// Timer
 	num.startTimer = function(maxTime) {
@@ -53,12 +53,12 @@ const gameNumbers = (function() {
 			timestamp = now;
 
 		}, 10);
-	}
+	};
 
 	// Remove timer - when user leave or end
 	num.removeTimer = function() {
 		clearInterval(timer);
-	}
+	};
 
 	// Initializing the variables
 	num.start = function(time, line=20) {

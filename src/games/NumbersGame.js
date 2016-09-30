@@ -33,7 +33,7 @@ const NumbersGame = React.createClass({
 		window.addEventListener("keyup", gameNumbers.changeFocus);
     },
 
-	compenentWillUnmount: function() {
+	componentWillUnmount() {
 		window.removeEventListener("keyup", gameNumbers.changeFocus);
 		gameNumbers.removeTimer();
 	}
