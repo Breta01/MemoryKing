@@ -3,10 +3,10 @@ import { Link } from 'react-router';
 import gameNumbers from './Numbers';
 
 const NumbersGame = React.createClass({
-    render() {
-        return (
-            <div className="game">
-                <h1 id="actualNumber">..</h1>
+	render() {
+		return (
+			<div className="game">
+				<h1 id="actualNumber">..</h1>
 
 				<div id="gameController">
 					<h1 id="timer">
@@ -18,22 +18,22 @@ const NumbersGame = React.createClass({
 					<a id="gameSubmit">Continue</a>
 				</div>
 
-                <div id="gameContent">
+				<div id="gameContent">
 					<table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 						<tbody id="gameTable">
 						</tbody>
 					</table>
 				</div>
-            </div>
-        )
-    },
+			</div>
+		)
+	},
 
 	componentDidMount: function() {
-        gameNumbers.start(5);
+		gameNumbers.start(5);
 		window.addEventListener("keyup", gameNumbers.changeFocus);
-    },
+	},
 
-	componentWillUnmount() {
+	componentWillUnmount: function() {
 		window.removeEventListener("keyup", gameNumbers.changeFocus);
 		gameNumbers.removeTimer();
 	}
