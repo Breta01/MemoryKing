@@ -23,7 +23,7 @@ const memokingDB = (function() {
             store.put({game: "Cards", score: 100, speed: 230, correct: 50, mistakes: 2, user: "Breta", timestamp: 1});
             store.put({game: "Numbers", score: 300, speed: 500, correct: 100, mistakes: 1, user: "Breta", timestamp: 2 });
             store.put({game: "Cards", score: 50, speed: 300, correct: 20, mistakes: 32, user: "Guest", timestamp: 3});
-            store.put({ game: "Cards", score: 120, speed: 150, correct: 52, mistakes: 0, user: "Breta", timestamp: 5});
+            store.put({game: "Cards", score: 120, speed: 150, correct: 52, mistakes: 0, user: "Breta", timestamp: 5});
         };
 
         request.onsuccess = function() {

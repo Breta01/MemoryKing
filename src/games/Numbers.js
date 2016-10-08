@@ -15,6 +15,13 @@ const gameNumbers = (function() {
 	var memTime = 5; // In minutes
 	var recTime = 5;
 
+	// Score
+	var userScore;
+	var userTime = -1; // If not timed, set to -1
+	var userCorrect;
+	var userMistakes;
+
+	var ms;
 	var timer;
 	var button;
 	var actualNumber;
@@ -29,7 +36,7 @@ const gameNumbers = (function() {
 	// Timer
 	num.startTimer = function(maxTime) {
 		console.log("Timer");
-		var ms = 0;
+		ms = 0;
 		var timestamp = +new Date;
 		var pad = function (val) {
 			return val > 9 ? val : "0" + val;
@@ -85,7 +92,6 @@ const gameNumbers = (function() {
 			}
 			print += "</tr>";
 		}
-		console.log(generatedNumbers); // @DEBUG - only for debugging
 
 		document.getElementById("gameTable").innerHTML = print;
 		document.getElementById("1").classList.add(focus);
@@ -103,7 +109,6 @@ const gameNumbers = (function() {
 		for (var i = 0; i < inputs.length; i++) {
 			userNumbers.push(inputs[i].value);
 		}
-		console.log(userNumbers); // @DEBUG
 
 		var correct = 0;
 		var mistakes = 0;
@@ -127,25 +132,29 @@ const gameNumbers = (function() {
 			}
 		}
 
-		// @TODO correct score formula
-		var score = correct * 5;
+		// @TODO work on score formula
+		userScore = correct * 4 + (maxTime * 60 * 100) / userTime ^ 0.75;
+		userMistakes = mistakes;
+		userCorrect = correct;
 		console.log("Correct: " + correct + " mistakes: " + mistakes);
 		document.getElementById("gameContent").innerHTML = "Correct: " + correct + " mistakes: " + mistakes;
-		num.sendScore(score);
+		num.sendScore(userScore);
 	};
 
 
 	// Swithing state from numbers learning to user value inputing
 	num.changeState = function() {
-		console.log("Changing state"); // @DEBUG
+
 		if (state === 0) {
+
 			state++;
 			id = 1;
+			userTime = ms;
+
 			var render = "";
 			for (var r=0; r < generatedNumbers.length / line; r++) {
 				render += "<tr>";
 				for (var i=0; i < line; i++) {
-					// @TODO add max input size and automatic tabing, check this: http://autotab.mathachew.com/
 					render += "<td class='quantity' style='width: " + 100/line
 						+ "%;'><input type='number' onClick='this.select()' name='numberInput' size='1' id='"
 						+ ((line*r)+i+1) + "'></td>";
@@ -161,6 +170,7 @@ const gameNumbers = (function() {
 			button.innerHTML = "Submit";
 
 		} else if (state === 1) {
+			
 			// @TODO show all stats
 			state++;
 			num.removeTimer();
@@ -239,10 +249,13 @@ const gameNumbers = (function() {
 
 	// Uploading score to the database using Redux action
 	// @TODO send complete stats
-	num.sendScore = function(score) {
+	num.sendScore = function() {
 		var stat = {
 			game: "Numbers",
-			score: score
+			score: userScore,
+			speed: userTime,
+			correct: userCorrect,
+			mistakes: userMistakes,
 		};
 		store.dispatch(addStats(stat));
 	};
