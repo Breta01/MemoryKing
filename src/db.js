@@ -58,9 +58,6 @@ const memokingDB = (function() {
                 // Called for each matching record.
                 stats.push(res.value);
                 res.continue();
-            } else {
-                // No more matching records.
-                console.log(null);
             }
         };
 
@@ -73,8 +70,7 @@ const memokingDB = (function() {
     };
 
     /** Create a new stat **/
-    // @TODO rework function, to pass object and database to put object (putting stats and settings)
-    mkDB.createStat = function(title, score, speed, mistakes, correct, user,
+    mkDB.createStat = function(title, score, speed, correct, mistakes, user,
 					callback = function(st) {console.log("Added stat to DB: " + st)}) {
         var db = datastore;
         var transaction = db.transaction(['stats'], 'readwrite');

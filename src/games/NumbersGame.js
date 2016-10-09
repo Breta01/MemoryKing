@@ -11,8 +11,8 @@ const NumbersGame = React.createClass({
 				<div id="gameController">
 					<h1 id="timer">
 						<span id="hour"></span>
-						<span id="min">00</span>:
-						<span id="sec">00</span>.
+						<span id="min">00</span>&nbsp;
+						<span id="sec">00</span>&nbsp;
 						<span id="hsec">00</span>
 					</h1>
 					<a id="gameSubmit">Continue</a>

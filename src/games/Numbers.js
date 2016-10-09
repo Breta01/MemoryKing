@@ -11,7 +11,7 @@ const gameNumbers = (function() {
 	// @TODO should be initialized on start
 	var state = 0;
 	var line = 20;
-	var maxLength = 2;
+	var maxLength = 1;
 	var memTime = 5; // In minutes
 	var recTime = 5;
 
@@ -49,7 +49,7 @@ const gameNumbers = (function() {
 			document.getElementById("hsec").innerHTML = pad(parseInt(ms/10 % 100));
 			document.getElementById("sec").innerHTML = pad(parseInt(ms / 1000 % 60, 10));
 			document.getElementById("min").innerHTML = pad(parseInt(ms / 60000 % 60, 10));
-			document.getElementById("hour").innerHTML = (ms > 3600000) ? pad(parseInt(ms / 3600000 % 60, 10)) + ":" : "";
+			document.getElementById("hour").innerHTML = (ms > 3600000) ? pad(parseInt(ms / 3600000 % 60, 10)) + "&nbsp;" : "";
 
 			// When the user run out of time
 			if (ms / 60000  >= maxTime) {
@@ -95,6 +95,7 @@ const gameNumbers = (function() {
 
 		document.getElementById("gameTable").innerHTML = print;
 		document.getElementById("1").classList.add(focus);
+
 		actualNumber.innerHTML = generatedNumbers[0];
 		button.addEventListener("click", function () {
 			num.changeState();
@@ -117,8 +118,8 @@ const gameNumbers = (function() {
 		for (var i = 0; i < userNumbers.length; i++) {
 			// Have to check each digit
 			for (var j = 0; j < maxLength; j++) {
-				if (String(userNumbers[i]).charAt(j) == generatedNumbers[i].charAt(j)
-					&& String(userNumbers[i]).charAt(j) !== "") {
+				if (String(userNumbers[i]).charAt(j) == generatedNumbers[i].charAt(j) &&
+					String(userNumbers[i]).charAt(j) !== "") {
 					correct++;
 					mistakes += bMistakes;
 					bMistakes = 0;
@@ -132,12 +133,11 @@ const gameNumbers = (function() {
 			}
 		}
 
-		// @TODO work on score formula
-		userScore = correct * 4 + (maxTime * 60 * 100) / userTime ^ 0.75;
+		// Score formula
+		userScore = Math.round(correct * 2 + (memTime) / (userTime / 60000) ^ 0.75 - mistakes * 0.3);
 		userMistakes = mistakes;
 		userCorrect = correct;
-		console.log("Correct: " + correct + " mistakes: " + mistakes);
-		document.getElementById("gameContent").innerHTML = "Correct: " + correct + " mistakes: " + mistakes;
+
 		num.sendScore(userScore);
 	};
 
@@ -164,17 +164,18 @@ const gameNumbers = (function() {
 
 			document.getElementById("gameTable").innerHTML = render;
 			document.getElementById("1").focus();
+
 			actualNumber.remove();
 			num.removeTimer();
 			num.startTimer(recTime);
+
 			button.innerHTML = "Submit";
 
 		} else if (state === 1) {
-			
-			// @TODO show all stats
 			state++;
 			num.removeTimer();
 			document.getElementById("timer").remove();
+
 			// It will instantly redirect to the Dashboard without timeout
 			setTimeout(function(){
 				button.innerHTML = 'Back to Dashboard';
@@ -182,6 +183,11 @@ const gameNumbers = (function() {
 			}, 20);
 
 			num.correct();
+
+			// Showing stats
+			document.getElementById("gameContent").innerHTML = "Correct: " + userCorrect
+			+ " Mistakes: " + userMistakes
+			+ "</br> Score: " + userScore;
 		}
 	};
 
@@ -229,12 +235,15 @@ const gameNumbers = (function() {
 				add = 1
 				break;
 		}
-		if (id+add <= generatedNumbers.length
-			&& id+add >=1) {
-			if (state === 1
-				&& document.getElementById('' + id).value.length >= maxLength
-				&& !isUpDown
-				|| key && state === 1) {
+
+		if (id+add <= generatedNumbers.length &&
+			id+add >=1) {
+			if (state === 1 &&
+				(
+					document.getElementById('' + id).value.length >= maxLength &&
+					!isUpDown ||
+					key
+				)) {
 
 				update(add);
 				document.getElementById('' + id).focus();
@@ -248,7 +257,6 @@ const gameNumbers = (function() {
 
 
 	// Uploading score to the database using Redux action
-	// @TODO send complete stats
 	num.sendScore = function() {
 		var stat = {
 			game: "Numbers",
