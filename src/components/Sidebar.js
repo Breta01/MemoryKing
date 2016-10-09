@@ -1,10 +1,6 @@
 import React from 'react'
 import { IndexLink } from 'react-router';
 
-
-// @TODO add component with gamecards directing to the specific games
-
-
 const Sidebar = () => (
     <div className='sidebar'>
         <ul className="mdl-navigation">

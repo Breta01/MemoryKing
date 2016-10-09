@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Gamecard from './Gamecard';
 import Table from './Table';
+import LineGraph from './graphs/LineGraph';
+import PolarAreaGraph from './graphs/PolarAreaGraph';
 
 class DashboardContent extends Component {
     render() {
@@ -8,13 +10,10 @@ class DashboardContent extends Component {
         const { stats } = props;
         return (
             <div>
-                <form id="new-todo-form" method="POST" action="#">
-                    <input type="text" name="new-todo" id="new-todo" placeholder="Enter a text..." required></input>
-                </form>
-
-                <h3>Choose the activity:</h3>
-                    {stats.map((stat, i) => <Table {...this.props} stat={stat} key={i}/>)}
-                <Gamecard />
+                <h3>Latest Stats:</h3>
+                <Table stats={stats} />
+                <LineGraph title="Score" data={stats} />
+                <PolarAreaGraph title="Games Played" data={stats} />
             </div>
         );
     }
