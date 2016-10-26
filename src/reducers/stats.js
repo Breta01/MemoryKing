@@ -10,13 +10,15 @@ function stats(state = [], action) {
         case 'ADD_STATS':
             console.log("Addign stats");
             var user = "User"; // @TODO get current user
+			var timestamp = new Date().getTime();
             memokingDB.createStat(
                 action.stat.game,
                 action.stat.score,
                 action.stat.speed,
                 action.stat.correct,
                 action.stat.mistakes,
-                user
+                user,
+				timestamp
             );
             return [
                 ...state,
@@ -26,6 +28,7 @@ function stats(state = [], action) {
                     speed: action.stat.speed,
                     correct: action.stat.correct,
                     mistakes: action.stat.mistakes,
+					timestamp: timestamp,
                     user
                 }
             ];

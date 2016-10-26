@@ -1,0 +1,79 @@
+.dashboard {
+	// Title
+	h1 {
+		font-size: 25px;
+		font-weight: 300;
+		color: $gray2;
+		margin: 0;
+	}
+
+	// Default
+	.mdl-cell {
+		background-color: white;
+
+		h3 {
+			margin-top: 0;
+			margin-bottom: 30px;
+			padding: 8px 16px;
+			background-color: $green;
+			color: white;
+		}
+
+		thead {
+			background-color: $blue;
+
+			th {
+				color: white;
+				font-size: 16px;
+				height: 56px;
+			}
+		}
+
+	}
+
+	// 4 Stat boxes at top
+	.stat-boxs .mdl-cell {
+		height: 140px;
+		color: white;
+		padding: 16px 20px;
+
+		&:nth-of-type(1) {
+			background-color: $blue;
+		}
+		&:nth-of-type(4n+2) {
+			background-color: $green;
+		}
+		&:nth-of-type(3) {
+			background-color: $red;
+		}
+		&:nth-of-type(4) {
+			background-color: $purple;
+		}
+
+		h1 {
+			color: white;
+			text-transform: uppercase;
+			font-size: 16px;
+			margin-bottom: 0;
+		}
+
+		h2 {
+			margin: 5px 0;
+		}
+	}
+
+	.mdl-data-table {
+		width: 100%;
+		table-layout: fixed;
+		border: none;
+		//@include box-shadow-1;
+
+		td, th {
+			height: 48px;
+			width: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			position:relative;
+		}
+	}
+}

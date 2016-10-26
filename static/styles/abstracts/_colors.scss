@@ -1,7 +1,7 @@
-$bgColor0: #f3f3f3;
+$bgColor0: #E5E9EC; //#f3f3f3;
 $bgColor1: #323544;
 $mainColor: #673AB7;
-$secColor: #FF2D55;
+$secColor: #F35957; //#FF2D55;
 $fgBlack: #1F1F21;
 $fgWhite: #F7F7F7;
 
@@ -19,6 +19,15 @@ $SBThumbHover: #aaa;
 $SBThumbActive: #8a8a8a;
 $SBTrackHover: #eaeaea;
 
+// Additional colors
+$blue: #0090D9;
+$green: #0AA699;
+$red: $secColor;
+$purple: $mainColor;
+
+// Darken values
+$drk1: 10%;
+$drk2: 20%;
 
 // *** Can be deleted ***
 // Greens

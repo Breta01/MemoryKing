@@ -34,7 +34,8 @@
 
 		#gameSubmit {
 			cursor: pointer;
-			background-color: $gray0;
+			background-color: $secColor;
+			color: white;
 			border-radius: 2px;
 			position: relative;
 			height: 36px;
@@ -50,10 +51,10 @@
 			line-height: 36px;
 			vertical-align: middle;
 			&:hover {
-				background: $darken1;
+				background: darken($secColor, $drk1);
 			}
 			&:active {
-				background: $darken2;
+				background: darken($secColor, $drk2);
 			}
 		}
 

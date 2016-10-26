@@ -4,6 +4,8 @@ const electron = require('electron');
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
+// Keep window state after close
+const windowStateKeeper = require('electron-window-state');
 
 // Reloading on changes, maybe can be deleted
 // require('electron-reload')(__dirname);
@@ -13,35 +15,43 @@ const BrowserWindow = electron.BrowserWindow;
 let mainWindow
 
 function createWindow () {
+	// Load the previos state with fallback to defaults
+	let mainWindowState = windowStateKeeper({
+		defaultWidth: 1000,
+		defaultHeight: 800
+	});
+
     // Create the browser window.
     mainWindow = new BrowserWindow({
-      width: 1100,
-      height: 600,
-      autoHideMenuBar: true
-      });
+		'x': mainWindowState.x,
+		'y': mainWindowState.y,
+		'width': mainWindowState.width,
+		'height': mainWindowState.height,
+		autoHideMenuBar: true
+	});
 
     // and load the index.html of the app.
     mainWindow.loadURL(`file://${__dirname}/index.html`);
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
-    /** @TODO React dev tools depends on the location of google chrom extension, location shoudl be changed
+    /** @TODO React dev tools depends on the location of google chrom extension,
+	*   location shoudl be changed
     *   more here: https://github.com/electron/electron/blob/master/docs/tutorial/devtools-extension.md
     *   BrowserWindow.addDevToolsExtension("\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\fmkadmapgofadopljbjfkapdkoienihi\\0.15.4_0")
     **/
 
-    // Emitted when the window is closed.
-    mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null;
-    });
+	// Emitted when the window is closed.
+	mainWindow.on('closed', function () {
+		mainWindow = null;
+	});
+
+	// Update the window state automatically
+	mainWindowState.manage(mainWindow);
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
 // Quit when all windows are closed.
@@ -60,6 +70,3 @@ app.on('activate', function () {
     createWindow()
   }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

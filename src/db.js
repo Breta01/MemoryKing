@@ -71,13 +71,11 @@ const memokingDB = (function() {
 
     /** Create a new stat **/
     mkDB.createStat = function(title, score, speed, correct, mistakes, user,
+					timestamp = new Date().getTime(),
 					callback = function(st) {console.log("Added stat to DB: " + st)}) {
         var db = datastore;
         var transaction = db.transaction(['stats'], 'readwrite');
         var objStore = transaction.objectStore('stats');
-
-        // Create a timestamp for the stat item. (this is key value)
-        var timestamp = new Date().getTime();
 
         // Create an object for the stat item.
         var stat = {
