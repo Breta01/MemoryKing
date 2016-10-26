@@ -62,16 +62,17 @@ const DashboardContent = React.createClass({
 						<p>Good job! See you tomorrow.</p>
 					</div>
 					<div className="mdl-cell mdl-cell--3-col">
-						<h1>Some Text</h1>
-						<h2>200</h2>
-					</div>
-					<div className="mdl-cell mdl-cell--3-col">
-						<h1>Bla Bla</h1>
+						<h1>Best Score</h1>
 						<h2>300</h2>
 					</div>
 					<div className="mdl-cell mdl-cell--3-col">
-						<h1>Another Info</h1>
-						<h2>400</h2>
+						<h1>Score Progress</h1>
+						<h2>20 %</h2>
+						<p>Your score increased by 20 %</p>
+					</div>
+					<div className="mdl-cell mdl-cell--3-col">
+						<h1>Average Speed</h1>
+						<h2>100 s</h2>
 					</div>
 				</div>
 				<div className="mdl-grid">

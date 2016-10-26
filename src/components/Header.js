@@ -8,11 +8,11 @@ const Header = () => (
             </li>
             <li className='user'>
                 <UserChip name="Breta" />
-            </li>
+            </li>{/*
             <li className='links'>
             <HeaderTab text="Latest" active={false} />
             <HeaderTab text="All" active={true} />
-            </li>
+            </li>*/}
         </ul>
     </div>
 )
