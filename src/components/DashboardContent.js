@@ -19,13 +19,32 @@ const DashboardContent = React.createClass({
 		};
 	},
 
+	// @TODO Needs testing
 	dayStreak: function() {
-		var diff;
 		const { stats } = this.props;
-		var index = stats.length;
+		var i = stats.length - 1;
+		var streak = 0;
+		var trainToday = 1;
 
+		if (i != -1) {
+			trainToday = moment(new Date().getTime()).diff(moment(stats[i].timestamp),
+				'days', true);
+			var diff = moment(stats[i].timestamp).diff(moment(stats[i-1].timestamp),
+				'days', false);
+			console.log(diff);
+			while (diff < 2 && i > 1) {
+				streak += diff;
+				i--;
+				diff = moment(stats[i].timestamp).diff(moment(stats[i-1].timestamp),
+					'days', false);
+				console.log(diff);
+			}
 
-		return index;
+			if (diff < 2 && i < 2) {
+				streak += diff;
+			}
+		}
+		return (trainToday < 1) ? streak + 1 : streak;
 	},
 
 	render: function() {
@@ -39,7 +58,7 @@ const DashboardContent = React.createClass({
 				<div className="mdl-grid stat-boxs">
 					<div className="mdl-cell mdl-cell--3-col">
 						<h1>Day Streak</h1>
-						<h2>{ this.dayStreak() }</h2>
+						<h2>{this.dayStreak()}</h2>
 						<p>Good job! See you tomorrow.</p>
 					</div>
 					<div className="mdl-cell mdl-cell--3-col">
