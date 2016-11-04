@@ -6,6 +6,32 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 // Keep window state after close
 const windowStateKeeper = require('electron-window-state');
+// Chect for automatic updates
+const GhReleases = require('electron-gh-releases');
+let options = {
+	repo: 'Breta01/MemoryKing',
+	currentVersion: app.getVersion()
+};
+
+const updater = new GhReleases(options);
+
+// `status` returns true if there is a new update available
+updater.check((err, status) => {
+	if (!err && status) {
+		// Download the update
+		updater.download();
+	}
+});
+
+// When an update has been downloaded
+updater.on('update-downloaded', (info) => {
+	// Restart the app and install the update
+	// @TODO add warning to user that it will restart
+	updater.install();
+});
+
+// Access electrons autoUpdater
+updater.autoUpdater;
 
 // Reloading on changes, maybe can be deleted
 // require('electron-reload')(__dirname);
