@@ -57,7 +57,7 @@ const LineGraph = React.createClass({
 		this.createChart();
 	},
 	componentWillUnmount: function() {
-		//document.getElementById("lineChart").remove();
+		document.getElementById("lineChart").remove();
 	},
 	render: function() {
 		return (

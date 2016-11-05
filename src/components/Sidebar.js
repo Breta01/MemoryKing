@@ -14,19 +14,11 @@ const Sidebar = () => (
             </li></IndexLink>
             <IndexLink to="/game" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
               <i className="material-icons">apps</i>
-              <div>Apps</div>
+              <div>Games</div>
             </li></IndexLink>
             <IndexLink to="/test" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
               <i className="material-icons">settings</i>
               <div>Settings</div>
-            </li></IndexLink>
-            <IndexLink to="/test" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
-              <div>1</div>
-              <div>Calendar</div>
-            </li></IndexLink>
-            <IndexLink to="/test" activeClassName="active" className="mdl-navigation__link mdl-js-button mdl-js-ripple-effect"><li>
-              <div>2</div>
-              <div>Two</div>
             </li></IndexLink>
         </ul>
     </div>
