@@ -1,7 +1,9 @@
 import React from 'react';
 
+// Card for showing available games
 const Gamecard = React.createClass({
 	render: function() {
+		// CSS with card image
 		const CardTitle = {
 			background: 'url("' + this.props.image + '") center / cover'
 		};
