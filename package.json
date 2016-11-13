@@ -12,11 +12,50 @@
     "devstart": "cross-env NODE_ENV=development electron .",
     "server": "babel-node server.js",
     "build": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
-    "package": "webpack --config webpack.config.production.js && electron-packager . MemoryKing --all"
+    "package": "webpack --config webpack.config.production.js && electron-packager . MemoryKing --all",
+    "postinstall": "install-app-deps",
+    "dist": "npm run build && build -mwl --publish 'onTag'"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Breta01/MemoryKing"
+  },
+  "build": {
+    "appId": "org.breta.MemoryKing",
+    "category": "public.app-category.education",
+    "files": [
+      "dist/",
+      "node_modules/",
+	  "main.js",
+	  "main.js.map",
+	  "package.json"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": "squirrel"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
+  },
+  "directories": {
+    "output": "release"
   },
   "keywords": [
     "Memory King",
@@ -24,7 +63,11 @@
     "King",
     "training"
   ],
-  "author": "Břetislav Hájek",
+  "author": {
+	  "name": "Břetislav Hájek",
+	  "email": "***REMOVED***",
+	  "url": "https://github.com/Breta01"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Breta01/MemoryKing/issues"
@@ -37,7 +80,6 @@
     "babel-preset-stage-0": "^6.5.0",
     "chart.js": "^2.3.0",
     "electron-gh-releases": "^2.0.4",
-    "electron-prebuilt": "^1.3.2",
     "electron-window-state": "^3.1.0",
     "menubar": "^5.1.0",
     "moment": "^2.15.1",
@@ -53,7 +95,9 @@
     "css-loader": "^0.23.1",
     "debounce": "^1.0.0",
     "devtron": "^1.3.0",
+    "electron-builder": "next",
     "electron-packager": "^7.5.1",
+    "electron-prebuilt": "^1.3.2",
     "expect": "^1.20.2",
     "express": "^4.14.0",
     "file-loader": "^0.9.0",

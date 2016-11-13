@@ -8,9 +8,9 @@ var options = {
   entry: './src/index',
 
   output: {
-    path: __dirname + '/build',
+    path: __dirname + '/dist',
     filename: 'bundle.js',
-    publicPath: __dirname + '/build'
+    publicPath: __dirname + '/dist'
   },
 
   module: {

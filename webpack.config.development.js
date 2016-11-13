@@ -27,8 +27,8 @@ var config = {
     ]
   },
   output: {
-    path: __dirname + '/build',
-    publicPath: 'http://localhost:9000/build/',
+    path: __dirname + '/dist',
+    publicPath: 'http://localhost:9000/dist/',
     filename: 'bundle.js'
   },
   resolve: {

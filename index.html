@@ -14,7 +14,7 @@
       // Determine the location of bundle.js based on NODE_ENV varibale (for live coding)
       (function() {
         const script = document.createElement('script');
-        script.src = process.env.NODE_ENV === 'development' ? 'http://localhost:9000/build/bundle.js' : './build/bundle.js';
+        script.src = process.env.NODE_ENV === 'development' ? 'http://localhost:9000/dist/bundle.js' : './dist/bundle.js';
         script.charset = "UTF-8"; // For correct character encoding
         document.write(script.outerHTML);
       }());
