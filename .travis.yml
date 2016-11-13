@@ -22,7 +22,6 @@ addons:
       - xz-utils
       - xorriso
       - xvfb
-      - wine
 
 install:
   - export CXX="g++-4.8"
