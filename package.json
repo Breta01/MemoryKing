@@ -14,7 +14,7 @@
     "build": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
     "package": "webpack --config webpack.config.production.js && electron-packager . MemoryKing --all",
     "postinstall": "install-app-deps",
-    "dist": "npm run build && build -mwl --publish 'onTag'"
+    "dist": "npm run build && build --publish onTag"
   },
   "repository": {
     "type": "git",
@@ -45,7 +45,7 @@
       ]
     },
     "win": {
-      "target": "squirrel"
+      "target": "nsis"
     },
     "linux": {
       "target": [
