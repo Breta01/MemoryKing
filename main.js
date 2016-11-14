@@ -60,7 +60,8 @@ function createWindow () {
     mainWindow.loadURL(`file://${__dirname}/index.html`);
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    if (process.env.NODE_ENV === 'development')
+        mainWindow.webContents.openDevTools();
     /** @TODO React dev tools depends on the location of google chrom extension,
 	*   location shoudl be changed
     *   more here: https://github.com/electron/electron/blob/master/docs/tutorial/devtools-extension.md

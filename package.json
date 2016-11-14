@@ -26,8 +26,9 @@
     "files": [
       "dist/",
       "node_modules/",
+	  "static/",
 	  "main.js",
-	  "main.js.map",
+	  "index.html",
 	  "package.json"
     ],
     "dmg": {
