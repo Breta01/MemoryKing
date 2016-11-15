@@ -32,7 +32,6 @@ addons:
 
 install:
   - nvm install 6
-  - export CXX="g++-4.8"
   - npm install electron-builder@next
   - npm install
   - export DISPLAY=':99.0'
