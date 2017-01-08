@@ -3,6 +3,8 @@
 
 Memory King is memory training app based on techniques used in memory championships.
 
+![# Preview](https://cloud.githubusercontent.com/assets/10288864/21750992/0f3150f0-d5c0-11e6-981f-3620766a6814.jpg)
+
 ## Install
 
 First, clone the repo via git:
