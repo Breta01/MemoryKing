@@ -3,8 +3,6 @@
 
 Memory King is memory training app based on techniques used in memory championships.
 
-![# Preview](https://cloud.githubusercontent.com/assets/10288864/21750992/0f3150f0-d5c0-11e6-981f-3620766a6814.jpg)
-
 ## Install
 
 First, clone the repo via git:
@@ -35,6 +33,10 @@ Or you can run only:
 ```bash
 $ npm start
 ```
+
+## Preview
+
+![# Preview](https://cloud.githubusercontent.com/assets/10288864/21751017/5ca4f8fa-d5c0-11e6-80d3-5a340fa7b935.jpg)
 
 ## Release
 
